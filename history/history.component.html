@@ -1,0 +1,22 @@
+<div class="navbar">
+    <h2>History</h2>
+</div>
+<div class="main-container">
+    <div class="container">
+        <h2>Task History</h2>
+        
+        <hr>
+        <div class="task-list">
+            <h3>All Tasks</h3>
+            <ul>
+                <li *ngFor="let task of getAllTasks()">
+                    <strong>{{ task.Title }}</strong> - {{ task.Description }} (Due: {{ task.Due_Date }}, Priority: {{ task.Priority_Level }})
+                </li>
+            </ul>
+        </div>
+
+        <div class="input-form">
+            <button class="btn btn-primary" (click)="onBack()">Back</button>
+        </div>
+    </div>
+</div>

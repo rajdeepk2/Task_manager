@@ -1,0 +1,64 @@
+<div class="navbar">
+    <h2>Tasks</h2>
+</div>
+<div class="main-container">
+    <div class="container">
+        <h2>Task Management</h2>
+        <form [formGroup]="taskForm" (ngSubmit)="addTask()" class="input-form">
+            <div class="form-group">
+                <label for="month">Select Month</label>
+                <select formControlName="month" id="month" class="form-control" (change)="onChange($event)">
+                    <option value="" disabled>Select Month</option>
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Title">Task Title</label>
+                <input type="text" formControlName="Title" id="Title" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="Description">Task Description</label>
+                <textarea formControlName="Description" id="Description" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="Due_Date">Due Date</label>
+                <input type="date" formControlName="Due_Date" id="Due_Date" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="Priority_Level">Priority Level</label>
+                <select formControlName="Priority_Level" id="Priority_Level" class="form-control">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" [class.disabled-dropdown]="!taskForm.get('month')?.value">Add</button>
+        </form>
+        
+        <hr>
+        
+        <div class="sort-buttons">
+            <button (click)="sortTasks('Due_Date')" class="btn btn-secondary">Sort by Due Date</button>
+            <button (click)="sortTasks('Priority_Level')" class="btn btn-secondary">Sort by Priority</button>
+            <button (click)="sortTasks('Status')" class="btn btn-secondary">Sort by Status</button>
+        </div>
+        
+        <div class="task-list">
+            <h3>Tasks for {{ selectedMonth }}</h3>
+            <ul>
+                <li *ngFor="let task of getAllTasks()">
+                    <strong>{{ task.Title }}</strong> - {{ task.Description }} (Due: {{ task.Due_Date }}, Priority: {{ task.Priority_Level }})
+                    <button (click)="editTask(task)" class="btn btn-sm btn-warning">Edit</button>
+                    <button (click)="deleteTask(task)" class="btn btn-sm btn-danger">Delete</button>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="btn btn-primary" (click)="onBack()">Back</button>
+            <button class="btn btn-primary" (click)="saveTasks()">Save</button>
+        </div>
+    </div>
+</div>

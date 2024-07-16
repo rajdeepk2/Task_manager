@@ -1,0 +1,53 @@
+
+<app-side-nav></app-side-nav>
+<div class="container">
+<div class="card-container">
+<div class="card">
+<div class="card-header">
+
+    <span class="icon task-icon">
+        <mat-icon class="mat-icon material-icons" style="color: black;">assignment</mat-icon>
+      </span>
+<h2>Tasks</h2>
+</div>
+<hr>
+<div class="task-details">
+<div class="month">
+<h3>Last Few Tasks</h3>
+<ul>
+<li *ngFor="let monthTask of lastMonthsTask">{{ monthTask }}</li>
+</ul>
+</div>
+<div class="month">
+<h3>Current Task</h3>
+<p>{{ currentMonthTask }}</p>
+</div>
+<button class="button" (click)="onTask ()">Add</button>
+</div>
+</div>
+
+<div class="card">
+
+<div class="card-header">
+    <span class="icon task-icon">
+        <mat-icon class="mat-icon material-icons" style="color: black;">assignment</mat-icon>
+      </span>
+<h2>Notes</h2>
+</div>
+<hr>
+<div class="note-details">
+<div class="month">
+<h3>Last Few Months</h3>
+<ul>
+<li *ngFor="let monthNote of lastMonthsNote">{{ monthNote}}</li>
+</ul>
+</div>
+<div class="month">
+<h3>Current Month</h3>
+<p>{{ currentMonthNote }}</p>
+</div>
+</div>
+<button class="button" (click)="onNote ()">ADD</button>
+</div>
+</div>
+</div>

@@ -1,0 +1,58 @@
+<div class="navbar">
+    <h2>Notes</h2>
+</div>
+<div class="main-container">
+    <div class="container">
+        <h2>Notes Management</h2>
+        <form [formGroup]="notesForm" (ngSubmit)="onSubmit()" class="input-form">
+            <div class="form-group">
+                <label for="month">Select Month</label>
+                <select formControlName="month" id="month" class="form-control" (change)="onChange($event)">
+                    <option value="" disabled>Select Month</option>
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Title">Note Title</label>
+                <input type="text" formControlName="Title" id="Title" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="Description">Note Description</label>
+                <textarea formControlName="Description" id="Description" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="Created_Date">Created Date</label>
+                <input type="date" formControlName="Created_Date" id="Created_Date" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary"
+                [class.disabled-dropdown]="!notesForm.get('month')?.value">Add</button>
+        </form>
+
+        <hr>
+        <div class="task-list">
+            <h3>Notes for {{ selectedMonth }}</h3>
+            <ul>
+                <li *ngFor="let note of getNotesForMonth(selectedMonth)">
+                    <strong>{{ note.Title }}</strong> - {{ note.Description }} (Created: {{ note.Created_Date }})
+                </li>
+            </ul>
+        </div>
+
+        <hr>
+        <div class="task-list">
+            <h3>All Notes</h3>
+            <ul>
+                <li *ngFor="let note of getAllNotes()">
+                    <strong>{{ note.Title }}</strong> - {{ note.Description }} (Created: {{ note.Created_Date }})
+                </li>
+            </ul>
+        </div>
+        
+        <div class="input-form">
+            <button class="btn btn-primary" (click)="onBack()">Back</button>
+            <button class="btn btn-primary" (click)="saveForm()">Save</button>
+        </div>
+    </div>
+</div>
